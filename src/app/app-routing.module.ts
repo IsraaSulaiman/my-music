@@ -1,11 +1,28 @@
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { AuthGuard } from './auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'albums',
+    loadChildren: () =>
+      import('./albums/albums.module').then((m) => m.AlbumsModule),
+    canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    redirectTo: 'albums',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

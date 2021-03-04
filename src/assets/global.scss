@@ -1,0 +1,48 @@
+$white: #fff;
+$gray: #3a3a3a;
+$yellow: #ffcd06;
+$blur-background: rgba(0, 0, 0, 0.01);
+$purple: #7854f7;
+$grey-body-text: #7854f7;
+$base-background-color: #e5e5e5;
+$global-font-family: PT Root UI Web;
+$base-color: #c4c4c4;
+$base-font-size: 14px;
+
+@mixin blur-background {
+  background: #c4c4c4;
+  backdrop-filter: blur(200px);
+}
+
+@mixin base-text-style {
+  font-family: $global-font-family;
+  font-style: normal;
+  font-weight: normal;
+}
+
+@mixin large-text-style {
+  @include base-text-style;
+  font-size: 22px;
+  line-height: 26px;
+  color: #c4c4c4;
+}
+
+@mixin heading-style {
+  @include base-text-style;
+  font-size: 16px;
+  line-height: 20px;
+  color: #c4c4c4;
+}
+
+@mixin body-style {
+  @include base-text-style;
+  font-size: $base-font-size;
+  line-height: 18px;
+  color: #c4c4c4;
+}
+
+@mixin sub-headline-style {
+  @include base-text-style;
+  font-size: 12px;
+  line-height: 12px;
+}

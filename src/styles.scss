@@ -1,6 +1,64 @@
+@font-face {
+  font-family: "PT Root UI";
+  font-weight: lighter;
+  src: url("assets/fonts/PT\ Root\ UI_Light.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PT Root UI Web";
+  font-weight: 500;
+  src: url("assets/fonts/PT\ Root\ UI_Medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PT Root UI";
+  font-weight: 400;
+  src: url("assets/fonts/PT\ Root\ UI_Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "PT Root UI";
+  font-weight: 700;
+  src: url("assets/fonts/PT\ Root\ UI_Bold.otf") format("opentype");
+}
+
 @import "./assets/global.scss";
 
+html {
+  box-sizing: border-box;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+*,
+*:after,
+*:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font-family: $global-font-family;
+}
+
+body {
+  @include body-style;
+  background: linear-gradient(
+    180deg,
+    #e2e0ee 0%,
+    rgba(229, 239, 255, 0.262661) 83.7%,
+    rgba(229, 239, 255, 0) 100%
+  );
+}
+
 .container {
-  max-width: 1366px;
+  max-width: 1920px;
   margin: 0 auto;
+  padding: 0 7%;
+}
+
+h2 {
+  @include large-text-style;
+}
+
+h3 {
+  @include heading-style;
 }

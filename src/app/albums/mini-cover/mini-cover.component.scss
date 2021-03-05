@@ -1,0 +1,45 @@
+@import "../../../assets/global.scss";
+
+.cover {
+  display: flex;
+  gap: 20px;
+  padding-right: 34px;
+  padding-left: 34px;
+
+  .img-container {
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      @include overlay;
+    }
+
+    &:hover {
+      box-shadow: $card-box-shadow;
+    }
+  }
+
+  img {
+    width: 100%;
+    filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.2));
+    border-radius: 8px;
+  }
+
+  .cover__content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h2 {
+      color: #fff;
+      font-weight: 400;
+    }
+
+    p {
+      color: #fff;
+      opacity: 0.6;
+    }
+  }
+}

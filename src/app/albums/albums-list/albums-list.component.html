@@ -1,7 +1,9 @@
-<ul>
-  <h2>Albums List</h2>
-  <app-album-card
-    [album]="album"
-    *ngFor="let album of albums$ | async"
-  ></app-album-card>
-</ul>
+<section>
+  <h2>Original Soundtrack</h2>
+  <ul class="album-list">
+    <app-album-card
+      [album]="album"
+      *ngFor="let album of albums$ | async"
+    ></app-album-card>
+  </ul>
+</section>

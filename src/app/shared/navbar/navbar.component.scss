@@ -1,0 +1,70 @@
+@import "./../../../assets/global.scss";
+
+.header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+
+  nav {
+    display: flex;
+    height: 80px;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .header__logo-container {
+    img {
+      height: 24px;
+    }
+  }
+
+  .header__navigation {
+    display: flex;
+    list-style: none;
+    gap: 55px;
+    li {
+      text-transform: capitalize;
+      cursor: pointer;
+      font-weight: 500;
+      transition: color ease-in-out 0.35s;
+      &:hover {
+        color: $purple;
+      }
+      &:active {
+        border-bottom: 2px solid $purple;
+      }
+    }
+  }
+
+  .user-sec {
+    margin-left: auto;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    .search {
+      cursor: pointer;
+    }
+
+    .avatart-container {
+      width: 35px;
+      height: 35px;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    button {
+      border-radius: 5px;
+      width: 120px;
+      height: 43px;
+      background: $purple;
+      border: none;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+}

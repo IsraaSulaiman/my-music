@@ -1,0 +1,42 @@
+@import "../../../assets/global.scss";
+
+.card {
+  a {
+    text-decoration: none;
+    color: $base-color;
+  }
+
+  & .active .img-container,
+  &:hover .img-container {
+    box-shadow: $card-box-shadow;
+  }
+}
+
+.card__figure {
+  .img-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &::after {
+      @include overlay;
+    }
+    & img,
+    &::after {
+      border-radius: 12px;
+    }
+  }
+}
+
+.card__figcaption {
+  padding: 8px 0;
+  & * {
+    text-transform: capitalize;
+  }
+
+  p {
+    color: $grey-body-text;
+  }
+}

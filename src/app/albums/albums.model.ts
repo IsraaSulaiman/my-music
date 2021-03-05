@@ -13,5 +13,5 @@ export interface Song {
 }
 
 export interface AlbumDetails extends Album {
-  songList: Song[];
+  songsList: Song[];
 }

@@ -1,2 +1,29 @@
-<p>album-details works!</p>
-<p>{{ album$ | async | json }}</p>
+<section class="album-details">
+  <ng-container *ngIf="album$ | async as album">
+    <app-mini-cover [album]="album"></app-mini-cover>
+    <ul *ngIf="album.songsList.length > 0">
+      <li
+        (click)="playSong(song.id)"
+        *ngFor="let song of album.songsList; let i = index"
+      >
+        <h3 class="active">
+          <span class="number" *ngIf="selectedSongId !== song.id">
+            {{ i + 1 }}</span
+          >
+          <app-sound-player-icon
+            *ngIf="selectedSongId !== song.id"
+            class="play-icon"
+          ></app-sound-player-icon>
+          <app-waves-icon
+            class="waves-icon"
+            *ngIf="selectedSongId === song.id"
+          ></app-waves-icon>
+          {{ song.name }}
+        </h3>
+        <p>{{ song.singer }}</p>
+        <p>{{ song.duration }}</p>
+      </li>
+    </ul>
+    <h3 *ngIf="album.songsList.length === 0">No Songs Found For This Album</h3>
+  </ng-container>
+</section>

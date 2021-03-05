@@ -1,4 +1,4 @@
-import { NotificationsService } from './../notifications.service';
+import { NotificationsService } from '../shared/notifications.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,

@@ -1,10 +1,10 @@
 <section class="album-details">
-  <ng-container *ngIf="album$ | async as album">
+  <ng-container *ngIf="album$ | async as album; else loading">
     <app-mini-cover [album]="album"></app-mini-cover>
-    <ul *ngIf="album.songsList.length > 0">
+    <ul class="songs-list" *ngIf="album.songsList.length > 0">
       <li
         (click)="playSong(song.id)"
-        *ngFor="let song of album.songsList; let i = index"
+        *ngFor="let song of album.songsList; let i = index; trackBy: trackByFn"
       >
         <h3 class="active">
           <span class="number" *ngIf="selectedSongId !== song.id">
@@ -24,6 +24,11 @@
         <p>{{ song.duration }}</p>
       </li>
     </ul>
-    <h3 *ngIf="album.songsList.length === 0">No Songs Found For This Album</h3>
+    <h3 class="no-data" *ngIf="album.songsList.length === 0">
+      No Songs Found For This Album
+    </h3>
   </ng-container>
+  <ng-template #loading>
+    <app-spinner></app-spinner>
+  </ng-template>
 </section>

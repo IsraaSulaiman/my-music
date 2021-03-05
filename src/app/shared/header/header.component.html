@@ -1,8 +1,9 @@
 <header class="header">
   <nav class="container">
-    <div class="header__logo-container">
-      <img src="assets/logo.png" alt="myMusic logo" />
-    </div>
+    <a routerLink="/" class="header__logo-container">
+      <img src="assets/images/logo.png" alt="myMusic logo" />
+      <h1 style="display: none">MyMusic</h1>
+    </a>
     <ul class="header__navigation">
       <li>
         <a routerLink="/myMusic" routerLinkActive="active">install myMusic</a>
@@ -19,7 +20,7 @@
     </ul>
     <div class="user-sec">
       <div class="avatar-container">
-        <img src="../../../assets/avatar.png" alt="user avatar" />
+        <img src="assets/images/avatar.png" alt="user avatar" />
       </div>
       <button type="button">Get started</button>
       <svg

@@ -43,4 +43,8 @@ export class AlbumDetailsComponent implements OnInit {
   playSong(id: number): void {
     this.selectedSongId = id;
   }
+
+  trackByFn(index, item): number {
+    return item.id;
+  }
 }

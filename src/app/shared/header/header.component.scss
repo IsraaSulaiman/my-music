@@ -1,4 +1,4 @@
-@import "./../../../assets/global.scss";
+@import "./../../../assets/styles/global.scss";
 
 .header {
   position: absolute;
@@ -30,8 +30,8 @@
       &:hover {
         color: $purple;
       }
-      &:active {
-        border-bottom: 2px solid $purple;
+      & .active {
+        border-bottom: 3px solid $purple;
       }
     }
   }
@@ -50,6 +50,7 @@
     .avatart-container {
       width: 35px;
       height: 35px;
+      box-shadow: $global-box-shadow;
 
       img {
         width: 100%;
@@ -65,6 +66,11 @@
       color: #fff;
       font-size: 16px;
       cursor: pointer;
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+      &:hover {
+        box-shadow: 0px 9px 15px 0px rgb(120 84 247 / 25%);
+      }
     }
   }
 }

@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AlbumsListComponent implements OnInit {
   albums$: Observable<Album[]>;
+
   constructor(
     private route: ActivatedRoute,
     private albumsService: AlbumsService,
@@ -32,5 +33,9 @@ export class AlbumsListComponent implements OnInit {
     if (a.id < b.id) return -1;
     if (a.id > b.id) return 1;
     return 0;
+  }
+
+  trackByFn(index, item): number {
+    return item.id;
   }
 }

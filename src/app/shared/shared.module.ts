@@ -1,23 +1,27 @@
+import { RouterModule } from '@angular/router';
 import { WavesIconComponent } from './waves.component';
 import { SoundPlayerIcon } from './sound-player.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarComponent } from './navbar/navbar.component';
+import { HeaderComponent } from './header/header.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    NavbarComponent,
+    HeaderComponent,
     NotFoundComponent,
     SoundPlayerIcon,
     WavesIconComponent,
+    SpinnerComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule.forChild([])],
   exports: [
     NotFoundComponent,
-    NavbarComponent,
+    HeaderComponent,
     SoundPlayerIcon,
     WavesIconComponent,
+    SpinnerComponent,
   ],
 })
 export class SharedModule {}

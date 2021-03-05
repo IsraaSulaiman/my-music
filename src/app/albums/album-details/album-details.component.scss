@@ -19,73 +19,78 @@
   );
   padding-top: 160px;
   color: #fff;
+}
 
-  ul {
-    margin-top: 50px;
-    list-style: none;
-    padding-right: 10px;
-    padding-left: 10px;
-    width: 85%;
+.no-data {
+  color: #fff;
+  text-align: center;
+}
 
-    li {
+ul.songs-list {
+  margin-top: 50px;
+  list-style: none;
+  padding-right: 10px;
+  padding-left: 10px;
+  width: 85%;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all ease-in-out 0.35s;
+    cursor: pointer;
+    position: relative;
+    padding: 15px 25px;
+    background: rgba(250, 250, 250, 0);
+    border-radius: 6px;
+    box-shadow: none;
+
+    & * {
+      color: #fff;
+      text-transform: capitalize;
+    }
+
+    h3 {
+      font-weight: normal;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all ease-in-out 0.35s;
-      cursor: pointer;
-      position: relative;
-      padding: 15px 25px;
-      background: rgba(250, 250, 250, 0);
-      border-radius: 6px;
-      box-shadow: none;
+    }
 
-      & * {
-        color: #fff;
-        text-transform: capitalize;
-      }
+    p {
+      opacity: 0.6;
+    }
 
-      h3 {
-        font-weight: normal;
-        display: flex;
-      }
+    span {
+      opacity: 0.4;
+      font-size: 12px;
+      margin-right: 10px;
+    }
 
-      p {
-        opacity: 0.6;
-      }
+    .play-icon {
+      display: none;
+      margin-right: 5px;
+    }
 
-      span {
-        opacity: 0.4;
-        font-size: 12px;
-        margin-right: 10px;
-      }
+    .number {
+      display: inline-block;
+    }
 
-      .play-icon {
-        display: none;
-        margin-right: 5px;
-      }
+    &:hover {
+      opacity: 1;
+      box-shadow: 0px 6px 8px rgb(0 0 0 / 20%);
+      background: #fff;
+    }
 
-      .number {
-        display: inline-block;
-      }
+    &:hover *,
+    &:hover h3 {
+      color: #000;
+    }
 
-      &:hover {
-        opacity: 1;
-        box-shadow: 0px 6px 8px rgb(0 0 0 / 20%);
-        background: #fff;
-      }
+    &:hover .number {
+      display: none;
+    }
 
-      &:hover *,
-      &:hover h3 {
-        color: #000;
-      }
-
-      &:hover .number {
-        display: none;
-      }
-
-      &:hover .play-icon {
-        display: inline-block;
-      }
+    &:hover .play-icon {
+      display: inline-block;
     }
   }
 }

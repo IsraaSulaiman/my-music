@@ -14,6 +14,7 @@ export class AlbumDetailsComponent implements OnInit {
   album$: Observable<AlbumDetails>;
   selectedAlbumId: number;
   selectedSongId: number;
+  playing: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,6 +46,7 @@ export class AlbumDetailsComponent implements OnInit {
 
   playSong(id: number): void {
     this.selectedSongId = id;
+    this.playing = true;
   }
 
   trackByFn(index, item): number {

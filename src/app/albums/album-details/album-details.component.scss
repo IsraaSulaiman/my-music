@@ -1,3 +1,5 @@
+@import "./equalizer.component.scss";
+
 :host {
   width: 35%;
   min-height: 100vh;
@@ -53,25 +55,16 @@ ul.songs-list {
     h3 {
       font-weight: normal;
       display: flex;
+      align-items: center;
+    }
+
+    &.active h3,
+    &.active .number {
+      color: #ffcd06;
     }
 
     p {
       opacity: 0.6;
-    }
-
-    span {
-      opacity: 0.4;
-      margin-right: 10px;
-    }
-
-    .play-icon {
-      display: none;
-      margin-right: 5px;
-    }
-
-    .number {
-      display: inline-block;
-      font-size: 14px;
     }
 
     &:hover {
@@ -85,6 +78,10 @@ ul.songs-list {
       color: #000;
     }
 
+    &.active:hover h3 {
+      color: #ffcd06;
+    }
+
     &:hover .number {
       display: none;
     }
@@ -92,5 +89,48 @@ ul.songs-list {
     &:hover .play-icon {
       display: inline-block;
     }
+
+    &:hover .toggle-pause {
+      display: block;
+    }
+
+    &:hover .toggle-play {
+      display: none;
+    }
+  }
+}
+
+.play-btn {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 25px;
+  margin-right: 15px;
+
+  .play-icon {
+    display: none;
+    margin-right: 5px;
+  }
+
+  .number {
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .equalizer-icon {
+    margin-right: 5px;
+  }
+
+  .pause {
+    display: none;
+  }
+
+  .toggle-pause {
+    display: none;
+  }
+
+  .toggle-play {
+    display: inline-block;
   }
 }

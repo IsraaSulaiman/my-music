@@ -2,8 +2,14 @@ import { AlbumDetails } from './../albums.model';
 import { AlbumsService } from './../albums.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import {
+  map,
+  startWith,
+  switchMap,
+  catchError,
+  finalize,
+} from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-album-details',
@@ -11,10 +17,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./album-details.component.scss'],
 })
 export class AlbumDetailsComponent implements OnInit {
-  album$: Observable<AlbumDetails>;
+  album: AlbumDetails;
   selectedAlbumId: number;
   selectedSongId: number;
   playing: boolean = true;
+  isLoading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,17 +29,27 @@ export class AlbumDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.album$ = this.route.paramMap.pipe(
-      switchMap((params) => {
-        this.selectedAlbumId = +params.get('id');
-        return this.fetchAlbumDetails();
-      })
-    );
+    this.route.paramMap
+      .pipe(
+        switchMap((params) => {
+          this.selectedAlbumId = +params.get('id');
+          return this.fetchAlbumDetails();
+        })
+      )
+      .subscribe(
+        (resp: AlbumDetails) => {
+          this.isLoading = false;
+          this.album = resp;
+        },
+        () => {
+          this.isLoading = false;
+        }
+      );
   }
 
-  fetchAlbumDetails(): Observable<AlbumDetails> {
+  fetchAlbumDetails() {
+    this.isLoading = true;
     return this.albumService.getAlbumDetails(this.selectedAlbumId).pipe(
-      startWith(null),
       map((val, index) => {
         this.selectedSongId =
           index === 1 &&

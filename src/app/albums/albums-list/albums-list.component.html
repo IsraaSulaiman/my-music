@@ -1,15 +1,15 @@
 <section>
   <h2>Original Soundtrack</h2>
-  <ng-container *ngIf="albums$ | async as albums; else loading">
-    <ul *ngIf="albums.length > 0" class="album-list">
-      <app-album-card
-        [album]="album"
-        *ngFor="let album of albums; trackBy: trackByFn"
-      ></app-album-card>
-    </ul>
-    <h3 class="no-data" *ngIf="albums.length === 0">No Albums Found</h3>
+  <ng-container *ngIf="albums$ | obsWithStatus | async as albums">
+    <ng-container *ngIf="albums.value as albumsList">
+      <ul *ngIf="albumsList.length > 0" class="album-list">
+        <app-album-card
+          [album]="album"
+          *ngFor="let album of albumsList; trackBy: trackByFn"
+        ></app-album-card>
+      </ul>
+      <h3 class="no-data" *ngIf="albumsList.length === 0">No Albums Found</h3>
+    </ng-container>
+    <app-spinner *ngIf="albums.loading"></app-spinner>
   </ng-container>
-  <ng-template #loading>
-    <app-spinner></app-spinner>
-  </ng-template>
 </section>

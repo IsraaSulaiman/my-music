@@ -1,5 +1,5 @@
 <section class="album-details">
-  <ng-container *ngIf="album$ | async as album; else loading">
+  <ng-container *ngIf="!isLoading && album">
     <app-mini-cover [album]="album"></app-mini-cover>
     <ul class="songs-list" *ngIf="album.songsList.length > 0">
       <li
@@ -83,7 +83,5 @@
       No Songs Found For This Album
     </h3>
   </ng-container>
-  <ng-template #loading>
-    <app-spinner></app-spinner>
-  </ng-template>
+  <app-spinner [hidden]="!isLoading"></app-spinner>
 </section>

@@ -1,27 +1,4 @@
-@font-face {
-  font-family: "PT Root UI";
-  font-weight: lighter;
-  src: url("assets/fonts/PT\ Root\ UI_Light.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "PT Root UI Web";
-  font-weight: 500;
-  src: url("assets/fonts/PT\ Root\ UI_Medium.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "PT Root UI";
-  font-weight: 400;
-  src: url("assets/fonts/PT\ Root\ UI_Regular.otf") format("opentype");
-}
-
-@font-face {
-  font-family: "PT Root UI";
-  font-weight: 700;
-  src: url("assets/fonts/PT\ Root\ UI_Bold.otf") format("opentype");
-}
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 @import "./assets/styles/global.scss";
 
 html {

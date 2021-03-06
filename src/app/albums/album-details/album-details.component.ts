@@ -2,7 +2,7 @@ import { AlbumDetails } from './../albums.model';
 import { AlbumsService } from './../albums.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -25,19 +25,22 @@ export class AlbumDetailsComponent implements OnInit {
       switchMap((params) => {
         this.selectedAlbumId = +params.get('id');
         return this.fetchAlbumDetails();
-      }),
-      tap(
-        (album) =>
-          (this.selectedSongId =
-            album.songsList &&
-            album.songsList.length > 0 &&
-            album.songsList[0].id)
-      )
+      })
     );
   }
 
   fetchAlbumDetails(): Observable<AlbumDetails> {
-    return this.albumService.getAlbumDetails(this.selectedAlbumId);
+    return this.albumService.getAlbumDetails(this.selectedAlbumId).pipe(
+      startWith(null),
+      map((val, index) => {
+        this.selectedSongId =
+          index === 1 &&
+          val.songsList &&
+          val.songsList.length > 0 &&
+          val.songsList[0].id;
+        return val;
+      })
+    );
   }
 
   playSong(id: number): void {

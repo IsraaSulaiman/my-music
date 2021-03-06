@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ObsWithStatusPipe } from './obs-with-status.pipe';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SoundPlayerIcon,
     WavesIconComponent,
     SpinnerComponent,
+    ObsWithStatusPipe,
   ],
   imports: [CommonModule, RouterModule.forChild([])],
   exports: [
@@ -22,6 +24,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SoundPlayerIcon,
     WavesIconComponent,
     SpinnerComponent,
+    ObsWithStatusPipe,
   ],
 })
 export class SharedModule {}

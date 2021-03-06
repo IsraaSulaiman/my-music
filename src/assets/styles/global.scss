@@ -5,7 +5,7 @@ $blur-background: rgba(0, 0, 0, 0.01);
 $purple: #7854f7;
 $grey-body-text: #94a2b3;
 $base-background-color: #e5e5e5;
-$global-font-family: PT Root UI Web;
+$global-font-family: "Roboto", sans-serif;
 $light-gray: #c4c4c4;
 $base-color: #272d4e;
 $base-font-size: 14px;
@@ -21,7 +21,7 @@ $card-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
 @mixin base-text-style {
   font-family: $global-font-family;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   color: $grey-body-text;
 }
 
@@ -37,6 +37,7 @@ $card-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
   @include base-text-style;
   font-size: 16px;
   line-height: 20px;
+  font-weight: 500;
   color: $gray;
 }
 

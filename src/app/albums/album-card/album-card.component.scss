@@ -10,6 +10,9 @@
   &:hover .img-container {
     box-shadow: $card-box-shadow;
   }
+  .active figcaption h3 {
+    color: $purple;
+  }
 }
 
 .card__figure {
@@ -31,7 +34,7 @@
 }
 
 .card__figcaption {
-  padding: 8px 0;
+  padding: 8px 5px;
   & * {
     text-transform: capitalize;
   }

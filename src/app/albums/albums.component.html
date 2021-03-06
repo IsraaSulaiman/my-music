@@ -1,4 +1,12 @@
 <div class="albums-container">
-  <app-albums-list class="albums"></app-albums-list>
-  <router-outlet></router-outlet>
+  <app-albums-list
+    [selectedId]="selectedAlbumId"
+    (selectedIdChange)="selectedAlbumId = $event"
+    class="albums"
+  ></app-albums-list>
+
+  <app-album-details
+    class="album-details"
+    [selectedAlbumId]="selectedAlbumId"
+  ></app-album-details>
 </div>

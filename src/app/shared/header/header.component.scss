@@ -5,11 +5,15 @@
   width: 100%;
   left: 0;
 
-  nav {
+  .nav {
     display: flex;
     height: 80px;
     align-items: center;
     gap: 40px;
+
+    @media only screen and (max-width: 860px) {
+      display: none;
+    }
   }
 
   .header__logo-container {
@@ -34,6 +38,9 @@
         border-bottom: 3px solid $purple;
       }
     }
+    @media only screen and (max-width: 1100px) {
+      gap: 30px;
+    }
   }
 
   .user-sec {
@@ -56,21 +63,155 @@
         width: 100%;
       }
     }
+  }
 
-    button {
-      border-radius: 5px;
-      width: 120px;
-      height: 43px;
-      background: $purple;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  // MOBILE CSS
+  .mb-navbar {
+    align-items: center;
+    padding: 0 8%;
+    height: 60px;
+    justify-content: space-between;
+    display: none;
 
-      &:hover {
-        box-shadow: 0px 9px 15px 0px rgb(120 84 247 / 25%);
+    @media only screen and (max-width: 860px) {
+      display: flex;
+    }
+
+    .left-actions {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+
+      svg path {
+        @media only screen and (max-width: 860px) {
+          fill: #b7b0ce;
+        }
+
+        @media only screen and (max-width: 640px) {
+          fill: #222;
+        }
       }
     }
+
+    .mbnav__burgar {
+      display: flex;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      height: 100%;
+      align-items: center;
+      text-transform: uppercase;
+      display: none;
+      background: transparent;
+
+      @media only screen and (max-width: 860px) {
+        display: flex;
+      }
+    }
+
+    .mbnav__toggle {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+
+      span,
+      span::before,
+      span::after {
+        height: 3px;
+        border-radius: 2px;
+        display: inline-block;
+        height: 2px;
+        width: 1.3rem;
+        transition: all 0.2s;
+
+        @media only screen and (max-width: 860px) {
+          background: #b7b0ce;
+        }
+
+        @media only screen and (max-width: 640px) {
+          background: #222;
+        }
+      }
+
+      span {
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          transition: all 0.2s;
+        }
+        &::before {
+          top: -0.5rem;
+        }
+        &::after {
+          top: 0.5rem;
+        }
+        &.rotate-left {
+          background-color: transparent;
+        }
+        &.rotate-left::after {
+          top: 0;
+          transform: rotate(-135deg);
+        }
+        &.rotate-right::before {
+          top: 0;
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+}
+
+.mb-menu {
+  height: calc(100vh - 60px);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(24, 28, 32);
+  z-index: 100;
+  width: 100%;
+  font-size: 15px;
+  font-family: $global-font-family;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  text-transform: capitalize;
+  transition: all 0.3s;
+  overflow: scroll;
+}
+
+.mb-list {
+  width: 100%;
+  list-style: none;
+  padding-right: 0;
+  padding-top: 30px;
+  font-weight: 400;
+
+  .mb-item {
+    margin-bottom: 25px;
+    width: 100%;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+button.get-started {
+  border-radius: 5px;
+  width: 120px;
+  height: 43px;
+  background: $purple;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    box-shadow: 0px 9px 15px 0px rgb(120 84 247 / 25%);
   }
 }

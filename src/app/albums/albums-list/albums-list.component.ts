@@ -1,9 +1,10 @@
 import { AlbumsService } from '../albums.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Album } from '../albums.model';
 import { map, tap } from 'rxjs/operators';
-import { Router, ActivatedRoute } from '@angular/router';
+
+import { sortDescById } from '../../shared/utils/sortDescById';
 
 @Component({
   selector: 'app-albums-list',
@@ -11,28 +12,24 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./albums-list.component.scss'],
 })
 export class AlbumsListComponent implements OnInit {
+  @Input() selectedId: number;
+  @Output() selectedIdChange: EventEmitter<number> = new EventEmitter();
   albums$: Observable<Album[]>;
 
-  constructor(
-    private route: ActivatedRoute,
-    private albumsService: AlbumsService,
-    private router: Router
-  ) {}
+  constructor(private albumsService: AlbumsService) {}
 
   ngOnInit(): void {
     this.albums$ = this.albumsService.getAll().pipe(
-      map((list) => list.sort(this.sortDescById)),
-      tap(
-        (list) =>
-          list.length > 0 &&
-          this.router.navigate([list[0].id], { relativeTo: this.route })
-      )
+      map((list) => list.sort(sortDescById)),
+      tap((list) => {
+        if (screen.width <= 640) return;
+        list.length > 0 && this.selectedIdChange.emit(+list[0].id);
+      })
     );
   }
-  sortDescById(a, b) {
-    if (a.id < b.id) return -1;
-    if (a.id > b.id) return 1;
-    return 0;
+
+  onSelectedAlbumChange(id) {
+    this.selectedIdChange.emit(id);
   }
 
   trackByFn(index, item): number {

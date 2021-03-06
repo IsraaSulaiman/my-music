@@ -1,30 +1,17 @@
 @import "./equalizer.component.scss";
 
-:host {
-  width: 35%;
-  min-height: 100vh;
-  background: #a4508b;
-  background-image: linear-gradient(
-    to left bottom,
-    #100e22,
-    #131431,
-    #171740,
-    #1b1b50,
-    #211e60,
-    #2e2267,
-    #3a266d,
-    #462a74,
-    #543172,
-    #603971,
-    #694271,
-    #714c71
-  );
+.album-details {
   padding-top: 160px;
-  color: #fff;
 }
 
 .no-data {
   color: #fff;
+  text-align: center;
+}
+
+.error {
+  color: #fff;
+  font-size: 23px;
   text-align: center;
 }
 
@@ -33,7 +20,10 @@ ul.songs-list {
   list-style: none;
   padding-right: 10px;
   padding-left: 10px;
-  width: 85%;
+
+  @media only screen and (max-width: 860px) {
+    width: 100%;
+  }
 
   li {
     display: flex;

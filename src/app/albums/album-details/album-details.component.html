@@ -84,4 +84,5 @@
     </h3>
   </ng-container>
   <app-spinner [hidden]="!isLoading"></app-spinner>
+  <h3 class="error" *ngIf="errorMsg">{{ errorMsg }}</h3>
 </section>

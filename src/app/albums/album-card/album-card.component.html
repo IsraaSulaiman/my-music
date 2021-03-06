@@ -1,14 +1,15 @@
 <div class="card">
-  <a [routerLink]="[album.id]" routerLinkActive="active">
-    <figure class="card__figure">
-      <div class="img-container">
-        <img [src]="album?.image" [alt]="album?.name" />
-      </div>
-      <figcaption class="card__figcaption">
-        <h3>{{ album?.name }}</h3>
-        <p>{{ album?.genre }}</p>
-      </figcaption>
-    </figure>
-    <img />
-  </a>
+  <figure
+    (click)="handleClick()"
+    [class.active]="album.id === selectedAlbum"
+    class="card__figure"
+  >
+    <div class="img-container">
+      <img [src]="album?.image" [alt]="album?.name" />
+    </div>
+    <figcaption class="card__figcaption">
+      <h3>{{ album?.name }}</h3>
+      <p>{{ album?.genre }}</p>
+    </figcaption>
+  </figure>
 </div>

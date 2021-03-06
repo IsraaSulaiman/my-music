@@ -1,6 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { throwError, Observable } from 'rxjs';
 
@@ -8,7 +7,7 @@ import { throwError, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NotificationsService {
-  constructor(private toastr: ToastrService, private router: Router) {}
+  constructor(private toastr: ToastrService) {}
 
   showSuccess(msg: string, title: string = '') {
     this.toastr.success(title, msg);
@@ -23,8 +22,6 @@ export class NotificationsService {
       this.showError('Something went wrong. please try another time');
     } else {
       this.showError(`${error.status}`, error.statusText);
-      //Empty the token and redirecto to login page
-      if (error.status === 401) this.router.navigate(['/']);
     }
     return throwError(error);
   }

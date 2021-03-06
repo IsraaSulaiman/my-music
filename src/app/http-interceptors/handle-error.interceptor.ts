@@ -1,4 +1,3 @@
-import { NotificationsService } from '../shared/notifications.service';
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -6,6 +5,8 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { retry, catchError } from 'rxjs/operators';
+
+import { NotificationsService } from '../shared/notifications.service';
 
 @Injectable()
 export class HandleErrorInterceptor implements HttpInterceptor {

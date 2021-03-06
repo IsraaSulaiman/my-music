@@ -21,6 +21,7 @@
     height: 200px;
     border-radius: 12px;
     position: relative;
+    cursor: pointer;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
     &::after {

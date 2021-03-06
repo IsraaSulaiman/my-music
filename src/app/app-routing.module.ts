@@ -1,7 +1,8 @@
-import { NotFoundComponent } from './shared/not-found/not-found.component';
-import { AuthGuard } from './auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
+import { AuthGuard } from './auth/auth.guard';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -9,10 +10,6 @@ const routes: Routes = [
     loadChildren: () =>
       import('./albums/albums.module').then((m) => m.AlbumsModule),
     canActivate: [AuthGuard],
-  },
-  {
-    path: 'play',
-    component: NotFoundComponent,
   },
   {
     path: '',

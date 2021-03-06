@@ -1,39 +1,44 @@
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { map } from 'rxjs/operators';
+
+import { sortDescById } from '../../shared/utils/sortDescById';
 import { AlbumDetails } from './../albums.model';
 import { AlbumsService } from './../albums.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import {
-  map,
-  startWith,
-  switchMap,
-  catchError,
-  finalize,
-} from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
-
 @Component({
   selector: 'app-album-details',
   templateUrl: './album-details.component.html',
   styleUrls: ['./album-details.component.scss'],
 })
-export class AlbumDetailsComponent implements OnInit {
+export class AlbumDetailsComponent implements OnChanges {
+  @Input() selectedAlbumId: number;
   album: AlbumDetails;
-  selectedAlbumId: number;
   selectedSongId: number;
   playing: boolean = true;
   isLoading = false;
+  errorMsg = '';
 
-  constructor(
-    private route: ActivatedRoute,
-    private albumService: AlbumsService
-  ) {}
+  constructor(private albumService: AlbumsService) {}
 
-  ngOnInit(): void {
-    this.route.paramMap
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.selectedAlbumId.currentValue) {
+      this.fetchAlbumDetails(changes.selectedAlbumId.currentValue);
+    }
+  }
+
+  fetchAlbumDetails(id: number) {
+    this.errorMsg = '';
+    this.isLoading = true;
+
+    return this.albumService
+      .getAlbumDetails(id)
       .pipe(
-        switchMap((params) => {
-          this.selectedAlbumId = +params.get('id');
-          return this.fetchAlbumDetails();
+        map((val, index) => {
+          let songs = val.songsList;
+          if (songs && songs.length > 0) {
+            val.songsList = songs.sort(sortDescById);
+            this.selectedSongId = index === 0 && val.songsList[0].id;
+          }
+          return val;
         })
       )
       .subscribe(
@@ -41,24 +46,11 @@ export class AlbumDetailsComponent implements OnInit {
           this.isLoading = false;
           this.album = resp;
         },
-        () => {
+        (err) => {
+          if (err.status === 404) this.errorMsg = 'Album Not Found';
           this.isLoading = false;
         }
       );
-  }
-
-  fetchAlbumDetails() {
-    this.isLoading = true;
-    return this.albumService.getAlbumDetails(this.selectedAlbumId).pipe(
-      map((val, index) => {
-        this.selectedSongId =
-          index === 1 &&
-          val.songsList &&
-          val.songsList.length > 0 &&
-          val.songsList[0].id;
-        return val;
-      })
-    );
   }
 
   playSong(id: number): void {

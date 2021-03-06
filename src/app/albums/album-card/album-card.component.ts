@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
 import { AlbumDetails } from '../albums.model';
 
 @Component({
@@ -8,4 +9,10 @@ import { AlbumDetails } from '../albums.model';
 })
 export class AlbumCardComponent {
   @Input() album: AlbumDetails;
+  @Input() selectedAlbum: number;
+  @Output() selectedAlbumChange: EventEmitter<null> = new EventEmitter();
+
+  handleClick() {
+    this.selectedAlbumChange.emit();
+  }
 }

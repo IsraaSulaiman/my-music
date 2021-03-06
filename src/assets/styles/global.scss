@@ -13,6 +13,8 @@ $global-box-shadow: 0 0.2rem 0.9rem rgba(0, 0, 0, 0.1);
 $card-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
   0 10px 10px rgba(0, 0, 0, 0.22);
 
+$breakpoint-tablet: 768px;
+
 @mixin blur-background {
   background: #c4c4c4;
   backdrop-filter: blur(200px);
@@ -28,7 +30,7 @@ $card-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.2),
 @mixin large-text-style {
   @include base-text-style;
   font-size: 22px;
-  line-height: 26px;
+  line-height: 1.2;
   font-weight: 700;
   color: $gray;
 }

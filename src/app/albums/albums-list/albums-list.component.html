@@ -4,8 +4,10 @@
     <ng-container *ngIf="albums.value as albumsList">
       <ul *ngIf="albumsList.length > 0" class="album-list">
         <app-album-card
-          [album]="album"
           *ngFor="let album of albumsList; trackBy: trackByFn"
+          [album]="album"
+          [selectedAlbum]="selectedId"
+          (selectedAlbumChange)="onSelectedAlbumChange(album.id)"
         ></app-album-card>
       </ul>
       <h3 class="no-data" *ngIf="albumsList.length === 0">No Albums Found</h3>

@@ -4,8 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'duFormat',
 })
 export class FormatDurationPipe implements PipeTransform {
-  transform(val) {
-    return this.formatDuration(val.replace(/\s/g, ''));
+  transform(dur) {
+    return typeof dur === 'string'
+      ? this.formatDuration(dur.replace(/\s/g, ''))
+      : this.formatDuration(dur);
   }
 
   formatDuration(minutes) {

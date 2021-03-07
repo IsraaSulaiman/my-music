@@ -7,17 +7,15 @@ import { Album, AlbumDetails } from './albums.model';
   providedIn: 'root',
 })
 export class AlbumsService {
+  private albumsUrl = '/api/albums/';
+
   constructor(private http: HttpClient) {}
 
-  getUrl(relative?: string): string {
-    return relative ? `/api/albums/${relative}` : `/api/albums`;
-  }
-
   getAll(): Observable<Album[]> {
-    return this.http.get<Album[]>(this.getUrl('all'));
+    return this.http.get<Album[]>(`${this.albumsUrl}/all`);
   }
 
   getAlbumDetails(id: number): Observable<AlbumDetails> {
-    return this.http.get<AlbumDetails>(this.getUrl(`details/${id}`));
+    return this.http.get<AlbumDetails>(`${this.albumsUrl}/details/${id}`);
   }
 }

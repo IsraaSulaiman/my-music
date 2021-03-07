@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AlbumDetails } from '../albums.model';
+import { Album } from '../albums.model';
 
 @Component({
   selector: 'app-album-card',
@@ -9,7 +9,7 @@ import { AlbumDetails } from '../albums.model';
   styleUrls: ['./album-card.component.scss'],
 })
 export class AlbumCardComponent {
-  @Input() album: AlbumDetails;
+  @Input() album: Album;
   @Input() selectedAlbum: number;
   @Output() selectedAlbumChange: EventEmitter<null> = new EventEmitter();
 

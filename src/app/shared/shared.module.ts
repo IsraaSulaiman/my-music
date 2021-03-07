@@ -1,3 +1,4 @@
+import { FormatDurationPipe } from './duration.pipe';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { ObsWithLoader } from './obs-with-loading.pipe';
     NotFoundComponent,
     SpinnerComponent,
     ObsWithLoader,
+    FormatDurationPipe,
   ],
   imports: [CommonModule, RouterModule.forChild([])],
   exports: [
@@ -19,6 +21,7 @@ import { ObsWithLoader } from './obs-with-loading.pipe';
     HeaderComponent,
     SpinnerComponent,
     ObsWithLoader,
+    FormatDurationPipe,
   ],
 })
 export class SharedModule {}

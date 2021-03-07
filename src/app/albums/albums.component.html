@@ -6,6 +6,7 @@
   ></app-albums-list>
 
   <app-album-details
+    *ngIf="showDetails"
     class="album-details"
     [selectedAlbumId]="selectedAlbumId"
   ></app-album-details>

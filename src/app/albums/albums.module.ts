@@ -8,6 +8,7 @@ import { AlbumCardComponent } from './album-card/album-card.component';
 import { AlbumsListComponent } from './albums-list/albums-list.component';
 import { MiniCoverComponent } from './mini-cover/mini-cover.component';
 import { SharedModule } from './../shared/shared.module';
+import { AlbumDetailPageComponent } from './album-detail-page/album-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { SharedModule } from './../shared/shared.module';
     AlbumCardComponent,
     AlbumsListComponent,
     MiniCoverComponent,
+    AlbumDetailPageComponent,
   ],
   imports: [CommonModule, AlbumsRoutingModule, SharedModule],
 })

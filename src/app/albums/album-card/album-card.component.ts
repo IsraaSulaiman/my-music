@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AlbumDetails } from '../albums.model';
 
@@ -12,7 +13,11 @@ export class AlbumCardComponent {
   @Input() selectedAlbum: number;
   @Output() selectedAlbumChange: EventEmitter<null> = new EventEmitter();
 
+  constructor(private router: Router) {}
+
   handleClick() {
-    this.selectedAlbumChange.emit();
+    screen.width <= 640
+      ? this.router.navigate(['/albums', this.album.id])
+      : this.selectedAlbumChange.emit();
   }
 }

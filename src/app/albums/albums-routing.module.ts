@@ -1,8 +1,13 @@
+import { AlbumDetailPageComponent } from './album-detail-page/album-detail-page.component';
 import { AlbumsComponent } from './albums.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
+  {
+    path: ':id',
+    component: AlbumDetailPageComponent,
+  },
   {
     path: '',
     component: AlbumsComponent,

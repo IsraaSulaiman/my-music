@@ -1,0 +1,22 @@
+:host .container {
+  padding-top: 100px;
+}
+
+.album-songs {
+  background-image: linear-gradient(
+    to left bottom,
+    #100e22,
+    #131431,
+    #171740,
+    #1b1b50,
+    #211e60,
+    #2e2267,
+    #3a266d,
+    #462a74,
+    #543172,
+    #603971,
+    #694271,
+    #714c71
+  );
+  min-height: 100vh;
+}

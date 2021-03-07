@@ -1,88 +1,99 @@
 <section class="album-details">
-  <ng-container *ngIf="!isLoading && album">
-    <app-mini-cover [album]="album"></app-mini-cover>
-    <ul class="songs-list" *ngIf="album.songsList.length > 0">
-      <li
-        *ngFor="let song of album.songsList; let i = index; trackBy: trackByFn"
-        [class.active]="selectedSongId === song.id"
-      >
-        <h3 class="active">
-          <button class="play-btn">
-            <span class="number" *ngIf="selectedSongId !== song.id || !playing">
-              {{ i + 1 }}
-            </span>
-            <svg
-              *ngIf="selectedSongId !== song.id || !playing"
-              (click)="playSong(song.id)"
-              class="play-icon"
-              width="17"
-              height="16"
-              viewBox="0 0 17 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M14.7674 5.77541L4.14521 0.639783C3.72888 0.409759 3.25612 0.292515 2.77668 0.300391C2.29725 0.308266 1.82888 0.44097 1.42087 0.684536C1.01286 0.928102 0.680298 1.27352 0.458187 1.68444C0.236077 2.09535 0.132632 2.55657 0.158743 3.01954V12.9927C0.139786 13.454 0.245543 13.9121 0.465579 14.3218C0.685615 14.7316 1.01233 15.0787 1.41348 15.3291C1.82245 15.5727 2.29361 15.7012 2.77397 15.7C3.24863 15.6951 3.7156 15.5835 4.13804 15.3742L14.7603 10.2385C15.222 10.0606 15.6179 9.7528 15.8968 9.35498C16.1757 8.95716 16.3248 8.48759 16.3248 8.00697C16.3248 7.52635 16.1757 7.05678 15.8968 6.65896C15.6179 6.26114 15.222 5.95336 14.7603 5.77541H14.7674Z"
-                fill="#FFCD06"
-              />
-            </svg>
-            <svg
-              *ngIf="selectedSongId === song.id && playing"
-              [class.toggle-play]="playing"
-              class="equalizer-icon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="#FFCD06"
-            >
-              <rect
-                class="eq-bar eq-bar--1"
-                x="4"
-                y="4"
-                width="3.7"
-                height="8"
-              />
-              <rect
-                class="eq-bar eq-bar--2"
-                x="10.2"
-                y="4"
-                width="3.7"
+  <ng-container *ngIf="album$ | obsWithStatus | async as album">
+    <ng-container *ngIf="album.value as album">
+      <app-mini-cover [album]="album"></app-mini-cover>
+      <ul class="songs-list" *ngIf="album.songsList.length > 0">
+        <li
+          *ngFor="
+            let song of album.songsList;
+            let i = index;
+            trackBy: trackByFn
+          "
+          [class.active]="selectedSongId === song.id"
+        >
+          <h3 class="active">
+            <button class="play-btn">
+              <span
+                class="number"
+                *ngIf="selectedSongId !== song.id || !playing"
+              >
+                {{ i + 1 }}
+              </span>
+              <svg
+                *ngIf="selectedSongId !== song.id || !playing"
+                (click)="playSong(song.id)"
+                class="play-icon"
+                width="17"
                 height="16"
-              />
-              <rect
-                class="eq-bar eq-bar--3"
-                x="16.3"
-                y="4"
-                width="3.7"
-                height="11"
-              />
-            </svg>
-            <svg
-              *ngIf="selectedSongId === song.id && playing"
-              (click)="playing = false"
-              class="pause"
-              [class.toggle-pause]="playing"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="#FFCD06"
-              width="18px"
-              height="18px"
-            >
-              <path d="M0 0h24v24H0z" fill="none" />
-              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
-            </svg>
-          </button>
-          {{ song.name }}
-        </h3>
-        <p>{{ song.singer }}</p>
-        <p>{{ song.duration }}</p>
-      </li>
-    </ul>
-    <h3 class="no-data" *ngIf="album.songsList.length === 0">
-      No Songs Found For This Album
+                viewBox="0 0 17 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M14.7674 5.77541L4.14521 0.639783C3.72888 0.409759 3.25612 0.292515 2.77668 0.300391C2.29725 0.308266 1.82888 0.44097 1.42087 0.684536C1.01286 0.928102 0.680298 1.27352 0.458187 1.68444C0.236077 2.09535 0.132632 2.55657 0.158743 3.01954V12.9927C0.139786 13.454 0.245543 13.9121 0.465579 14.3218C0.685615 14.7316 1.01233 15.0787 1.41348 15.3291C1.82245 15.5727 2.29361 15.7012 2.77397 15.7C3.24863 15.6951 3.7156 15.5835 4.13804 15.3742L14.7603 10.2385C15.222 10.0606 15.6179 9.7528 15.8968 9.35498C16.1757 8.95716 16.3248 8.48759 16.3248 8.00697C16.3248 7.52635 16.1757 7.05678 15.8968 6.65896C15.6179 6.26114 15.222 5.95336 14.7603 5.77541H14.7674Z"
+                  fill="#FFCD06"
+                />
+              </svg>
+              <svg
+                *ngIf="selectedSongId === song.id && playing"
+                [class.toggle-play]="playing"
+                class="equalizer-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="#FFCD06"
+              >
+                <rect
+                  class="eq-bar eq-bar--1"
+                  x="4"
+                  y="4"
+                  width="3.7"
+                  height="8"
+                />
+                <rect
+                  class="eq-bar eq-bar--2"
+                  x="10.2"
+                  y="4"
+                  width="3.7"
+                  height="16"
+                />
+                <rect
+                  class="eq-bar eq-bar--3"
+                  x="16.3"
+                  y="4"
+                  width="3.7"
+                  height="11"
+                />
+              </svg>
+              <svg
+                *ngIf="selectedSongId === song.id && playing"
+                (click)="playing = false"
+                class="pause"
+                [class.toggle-pause]="playing"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="#FFCD06"
+                width="18px"
+                height="18px"
+              >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
+              </svg>
+            </button>
+            {{ song.name }}
+          </h3>
+          <p>{{ song.singer }}</p>
+          <p>{{ song.duration }}</p>
+        </li>
+      </ul>
+      <h3 class="no-data" *ngIf="album.songsList.length === 0">
+        No Songs Found For This Album
+      </h3>
+    </ng-container>
+    <app-spinner *ngIf="album.loading"></app-spinner>
+    <h3 class="error" *ngIf="album.error && album.error.status === 404">
+      Album Not Found
     </h3>
   </ng-container>
-  <app-spinner [hidden]="!isLoading"></app-spinner>
-  <h3 class="error" *ngIf="errorMsg">{{ errorMsg }}</h3>
 </section>

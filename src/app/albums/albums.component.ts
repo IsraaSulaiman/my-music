@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AlbumsComponent {
   public selectedAlbumId: number;
+
+  get showDetails() {
+    return screen.width > 640;
+  }
 }
